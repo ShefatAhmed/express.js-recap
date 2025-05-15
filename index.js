@@ -1,18 +1,22 @@
 const express = require("express");
 
 const app = express();
-const router = express.Router();
 
-app.use(router)
+app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-  res.send("Get Method");
+app
+  .route("/about/mission")
+  .get((req, res) => {
+    res.render("pages/about");
+  })
+  .post((req, res) => {
+    res.send("Welcome to application home post");
+  })
+  .put((req, res) => {
+    res.send("Welcome to application home put");
+  });
+
+
+app.listen(5000, () => {
+  console.log("Server is listing on port 5000");
 });
-
-app.post("/", (req, res) => {
-  res.send("Post Method");
-});
-
-app.listen(5000, ()=> {
-    console.log("Server is listing on port 5000");
-})
